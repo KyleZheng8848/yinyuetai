@@ -1,0 +1,109 @@
+name: Publish macOS apps
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-release
+  cancel-in-progress: false
+
+jobs:
+  build:
+    timeout-minutes: 30
+    name: Build and verify ${{ matrix.arch }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-15
+            arch: arm64
+            appdir: mac-arm64
+          - os: macos-15-intel
+            arch: x64
+            appdir: mac
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Source version
+        id: version
+        run: echo "version=$(node -p 'require("./package.json").version')" >> "$GITHUB_OUTPUT"
+      - name: Build installers from this commit
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+        run: |
+          npm run check:version
+          npm test
+          npx --no-install electron-builder --mac dmg zip --${{ matrix.arch }} --publish never
+      - name: Verify bundle and archives
+        run: >-
+          python3 scripts/verify-macos-release.py
+          --product "音悦台 Studio" --version "${{ steps.version.outputs.version }}"
+          --arch "${{ matrix.arch }}" --repo "https://github.com/${{ github.repository }}"
+          --app "release/${{ matrix.appdir }}/音悦台 Studio.app" --stem "release/Yinyuetai-Studio-${{ steps.version.outputs.version }}-mac-${{ matrix.arch }}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: installers-${{ matrix.arch }}
+          path: |
+            release/Yinyuetai-Studio-${{ steps.version.outputs.version }}-mac-${{ matrix.arch }}.dmg
+            release/Yinyuetai-Studio-${{ steps.version.outputs.version }}-mac-${{ matrix.arch }}.zip
+            release/${{ matrix.arch }}.sha256
+          if-no-files-found: error
+          retention-days: 14
+
+  release:
+    needs: build
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: installers
+          merge-multiple: true
+      - name: Publish the verified installers
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERSION=$(node -p 'require("./package.json").version')
+          TAG="v$VERSION"
+          test -z "$(git ls-remote --tags origin "refs/tags/$TAG")" || { echo 'Tag already exists; refusing to overwrite'; exit 1; }
+          cd installers
+          cat arm64.sha256 x64.sha256 > SHA256SUMS.txt
+          sha256sum --check SHA256SUMS.txt
+          test "$(wc -l < SHA256SUMS.txt)" -eq 4
+          cat > release-notes.md <<'NOTES'
+          Published and maintained by **SofunAI Studio**.
+
+          macOS applications built from the source commit linked to this tag. Choose **arm64** for Apple Silicon or **x64** for Intel. Both DMG and ZIP are provided; verify downloads with `SHA256SUMS.txt`.
+
+          Applications use ad hoc signatures and are **not notarized by Apple**. Mac package verification covers bundle versions, architectures, signatures, privacy exclusions, publisher/source links and archive contents. Interactive app behavior on all hardware is not implied by these packaging checks.
+
+          Drag 音悦台 Studio.app to Applications. If macOS blocks the first launch, confirm the source, then use System Settings → Privacy & Security → Open Anyway.
+
+          由 **SofunAI 工作室**出品并维护。安装包由本标签对应源码构建：M 系列芯片选 **arm64**，Intel 选 **x64**。提供 DMG、ZIP 与 SHA256 校验文件。
+
+          应用采用临时签名，尚未经过 Apple 公证。将音悦台 Studio.app 拖入「应用程序」；如首次启动被拦截，核对来源后在「系统设置 → 隐私与安全性」点「仍要打开」。
+          NOTES
+          gh release create "$TAG" ./*.dmg ./*.zip SHA256SUMS.txt --target "$GITHUB_SHA" --draft --title "Yinyuetai-Studio $VERSION" --notes-file release-notes.md
+          gh release edit "$TAG" --draft=false --latest
+          mkdir public-download
+          cd public-download
+          # Anonymous downloads exercise the same public URLs used by README.
+          while read -r HASH NAME; do
+            curl --fail --location --retry 3 --max-time 300 --silent --show-error "https://github.com/$GH_REPO/releases/download/$TAG/$NAME" -o "$NAME"
+          done < ../SHA256SUMS.txt
+          sha256sum --check ../SHA256SUMS.txt
+          gh release view "$TAG" --json url,tagName,isDraft,targetCommitish,assets

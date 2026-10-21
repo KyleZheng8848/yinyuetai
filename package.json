@@ -1,0 +1,103 @@
+{
+  "name": "yinyuetai",
+  "version": "1.15.11",
+  "private": true,
+  "main": "desktop/main.js",
+  "description": "音悦台 Studio 桌面音乐创作软件，支持多种本地音乐模型与用户自带 Key 的远端 API",
+  "yinyuetai": {
+    "releaseDir": "release",
+    "keepReleases": 20,
+    "requiredPlatforms": [
+      "mac-arm64"
+    ]
+  },
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron .",
+    "web": "node server/launcher.js",
+    "test": "node tools/test-engine.js && node tools/test-runtime.js",
+    "pack": "electron-builder --dir --publish never",
+    "dist": "electron-builder --publish never",
+    "release:manifest": "node scripts/gen-update-manifest.mjs",
+    "release:publish": "node scripts/publish-release.mjs",
+    "verify:published": "node scripts/verify-published.mjs",
+    "verify:surface": "node scripts/verify-surface.mjs",
+    "check:version": "node scripts/check-version.cjs"
+  },
+  "devDependencies": {
+    "electron": "44.1.1",
+    "electron-builder": "26.15.3"
+  },
+  "build": {
+    "appId": "studio.yinyuetai.desktop",
+    "productName": "音悦台 Studio",
+    "artifactName": "Yinyuetai-Studio-${version}-${os}-${arch}.${ext}",
+    "files": [
+      "index.html",
+      "css/**/*",
+      "js/**/*",
+      "assets/**/*",
+      "desktop/**/*",
+      "server/**/*",
+      "workflows/**/*",
+      "package.json",
+      "LICENSE",
+      "THIRD_PARTY_NOTICES.md",
+      "licenses/**/*",
+      "!**/__pycache__/**",
+      "!**/*.pyc",
+      "!**/.DS_Store",
+      "!assets/screenshots/**",
+      "!outputs/**",
+      "!.runtime/**",
+      "!.env*"
+    ],
+    "mac": {
+      "category": "public.app-category.music",
+      "icon": "assets/icon.png",
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "identity": "-",
+      "hardenedRuntime": false,
+      "extendInfo": {
+        "NSHumanReadableCopyright": "Copyright © 2026 SofunAI Studio and Yinyuetai contributors"
+      }
+    },
+    "win": {
+      "icon": "assets/icon.png",
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    },
+    "linux": {
+      "category": "AudioVideo",
+      "icon": "assets/icon.png",
+      "target": [
+        "AppImage"
+      ]
+    },
+    "copyright": "Copyright © 2026 SofunAI Studio and Yinyuetai contributors",
+    "directories": {
+      "output": "release"
+    }
+  },
+  "dependencies": {
+    "lamejs": "^1.2.1"
+  },
+  "author": "SofunAI Studio",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KyleZheng8848/yinyuetai.git"
+  },
+  "homepage": "https://github.com/KyleZheng8848/yinyuetai#readme",
+  "bugs": {
+    "url": "https://github.com/KyleZheng8848/yinyuetai/issues"
+  },
+  "engines": {
+    "node": ">=22.14.0"
+  }
+}

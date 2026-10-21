@@ -1,0 +1,21 @@
+node_modules/
+dist/
+release/
+.runtime/
+.cache/
+outputs/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+*.log
+*.part
+*.pem
+*.key
+*.p12
+*.pfx
+.DS_Store
+
+# Walkthrough videos are distributed as GitHub Release assets
+/assets/demo/*.mp4

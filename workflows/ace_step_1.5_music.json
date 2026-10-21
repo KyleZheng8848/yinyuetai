@@ -1,0 +1,49 @@
+{
+  "14": {
+    "class_type": "CheckpointLoaderSimple",
+    "inputs": { "ckpt_name": "ace_step_1.5_turbo_aio.safetensors" }
+  },
+  "17": {
+    "class_type": "EmptyAceStepLatentAudio",
+    "inputs": { "seconds": 24, "batch_size": 1 }
+  },
+  "18": {
+    "class_type": "TextEncodeAceStepAudio",
+    "inputs": {
+      "tags": "lo-fi, chill, piano, rainy day, warm",
+      "lyrics": "窗外的雨轻轻落下\n思念在琴键上流淌",
+      "clip": ["14", 1]
+    }
+  },
+  "44": {
+    "class_type": "ConditioningZeroOut",
+    "inputs": { "conditioning": ["18", 0] }
+  },
+  "51": {
+    "class_type": "ModelSamplingAuraFlow",
+    "inputs": { "shift": 3.0, "model": ["14", 0] }
+  },
+  "52": {
+    "class_type": "KSampler",
+    "inputs": {
+      "seed": 12345,
+      "steps": 28,
+      "cfg": 5,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 1.0,
+      "model": ["51", 0],
+      "positive": ["18", 0],
+      "negative": ["44", 0],
+      "latent_image": ["17", 0]
+    }
+  },
+  "19": {
+    "class_type": "VAEDecodeAudio",
+    "inputs": { "samples": ["52", 0], "vae": ["14", 2] }
+  },
+  "59": {
+    "class_type": "SaveAudioMP3",
+    "inputs": { "audio": ["19", 0], "filename_prefix": "yinyuetai", "quality": "V0" }
+  }
+}

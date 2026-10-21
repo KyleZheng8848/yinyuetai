@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="ground" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#242820"/>
+      <stop offset="1" stop-color="#0d0f0c"/>
+    </linearGradient>
+    <linearGradient id="disc" x1="0" y1="0" x2=".8" y2="1">
+      <stop offset="0" stop-color="#e3ff7c"/>
+      <stop offset="1" stop-color="#bdf632"/>
+    </linearGradient>
+  </defs>
+  <rect x="32" y="32" width="960" height="960" rx="224" fill="url(#ground)"/>
+  <rect x="48" y="48" width="928" height="928" rx="208" fill="none" stroke="#d6ff55" stroke-opacity=".28" stroke-width="4"/>
+  <circle cx="512" cy="512" r="340" fill="none" stroke="#6fe4d5" stroke-opacity=".26" stroke-width="10"/>
+  <circle cx="512" cy="512" r="296" fill="none" stroke="#6fe4d5" stroke-opacity=".5" stroke-width="4" stroke-dasharray="90 25 8 25"/>
+  <circle cx="512" cy="512" r="248" fill="url(#disc)"/>
+  <circle cx="512" cy="512" r="188" fill="none" stroke="#11130d" stroke-opacity=".12" stroke-width="6"/>
+  <circle cx="512" cy="512" r="130" fill="none" stroke="#11130d" stroke-opacity=".12" stroke-width="6"/>
+  <path d="M391 354h83l42 96 44-96h78L553 527v143h-83V527L391 354Z" fill="#11130d"/>
+  <circle cx="512" cy="512" r="17" fill="#6fe4d5"/>
+</svg>

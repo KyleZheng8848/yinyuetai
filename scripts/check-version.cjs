@@ -1,0 +1,14 @@
+'use strict';
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const root = path.resolve(__dirname, '..');
+const pkg = require(path.join(root, 'package.json'));
+const lock = require(path.join(root, 'package-lock.json'));
+assert.equal(lock.version, pkg.version);
+assert.equal(lock.packages[''].version, pkg.version);
+const changelog = fs.readFileSync(path.join(root, 'CHANGELOG.md'), 'utf8');
+assert.equal(/^## (\d+\.\d+\.\d+) — \d{4}-\d{2}-\d{2}/m.exec(changelog)?.[1], pkg.version);
+const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+for (const match of html.matchAll(/\?v=([\d.]+)/g)) assert.equal(match[1], pkg.version);
+console.log(`Version synchronized: ${pkg.version}`);

@@ -1,0 +1,86 @@
+{
+  "3": {
+    "class_type": "CheckpointLoaderSimple",
+    "inputs": {
+      "ckpt_name": "stable_audio_open_1.0.safetensors"
+    }
+  },
+  "6": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "warm ambient pad, gentle piano, rain",
+      "clip": [
+        "3",
+        1
+      ]
+    }
+  },
+  "7": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "",
+      "clip": [
+        "3",
+        1
+      ]
+    }
+  },
+  "11": {
+    "class_type": "EmptyLatentAudio",
+    "inputs": {
+      "seconds": 24,
+      "batch_size": 1
+    }
+  },
+  "12": {
+    "class_type": "VAEDecodeAudio",
+    "inputs": {
+      "samples": [
+        "3s",
+        0
+      ],
+      "vae": [
+        "3",
+        2
+      ]
+    }
+  },
+  "13": {
+    "class_type": "SaveAudioMP3",
+    "inputs": {
+      "audio": [
+        "12",
+        0
+      ],
+      "filename_prefix": "yinyuetai",
+      "quality": "V0"
+    }
+  },
+  "3s": {
+    "class_type": "KSampler",
+    "inputs": {
+      "seed": 12345,
+      "steps": 28,
+      "cfg": 5,
+      "sampler_name": "dpmpp_3m_sde_gpu",
+      "scheduler": "exponential",
+      "denoise": 1,
+      "model": [
+        "3",
+        0
+      ],
+      "positive": [
+        "6",
+        0
+      ],
+      "negative": [
+        "7",
+        0
+      ],
+      "latent_image": [
+        "11",
+        0
+      ]
+    }
+  }
+}

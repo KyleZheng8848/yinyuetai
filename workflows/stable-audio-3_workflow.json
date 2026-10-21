@@ -1,0 +1,24 @@
+{
+  "1": {
+    "class_type": "StabilityStableAudio",
+    "inputs": {
+      "prompt": "warm ambient pad, gentle piano, rain",
+      "negative_prompt": "",
+      "duration": 24,
+      "steps": 28,
+      "seed": 12345,
+      "model": "stable-audio-2.5"
+    }
+  },
+  "2": {
+    "class_type": "SaveAudioMP3",
+    "inputs": {
+      "audio": [
+        "1",
+        0
+      ],
+      "filename_prefix": "yinyuetai",
+      "quality": "V0"
+    }
+  }
+}

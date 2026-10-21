@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="128" viewBox="0 0 480 128" role="img" aria-labelledby="title desc">
+  <title id="title">SofunAI Studio</title>
+  <desc id="desc">SofunAI Studio: two soft interlocking coral and mint loops on warm paper, with a small blue accent. Wordmark for light backgrounds.</desc>
+  <rect x="8" y="8" width="112" height="112" rx="36" fill="#F6EFE0"/>
+  <path d="M83 29H57C40 29 29 39 29 53C29 67 40 76 57 76H68" fill="none" stroke="#E07A5F" stroke-width="15" stroke-linecap="round"/>
+  <path d="M45 99H71C88 99 99 89 99 75C99 61 88 52 71 52H60" fill="none" stroke="#2A7A6A" stroke-width="15" stroke-linecap="round"/>
+  <circle cx="100" cy="27" r="7" fill="#7EB8DA"/>
+  <text x="146" y="73" font-family="ui-rounded, 'SF Pro Rounded', system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="55" font-weight="700" letter-spacing="-1.4" fill="#40382E">Sofun<tspan fill="#2A7A6A">AI</tspan></text>
+  <text x="150" y="103" font-family="ui-rounded, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="14" font-weight="600" letter-spacing="6" fill="#877A66">STUDIO</text>
+</svg>
