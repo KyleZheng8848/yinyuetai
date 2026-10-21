@@ -6,7 +6,7 @@
 
 **由 [SofunAI 工作室](assets/brand/README.md)出品并维护。**
 
-**[GitHub 仓库](https://github.com/KyleZheng8848/yinyuetai)** · **[Releases](https://github.com/KyleZheng8848/yinyuetai/releases)** · [反馈问题](https://github.com/KyleZheng8848/yinyuetai/issues)
+**[GitHub 仓库](https://github.com/KyleZheng8848/yinyuetai)** · **[Releases](https://github.com/KyleZheng8848/yinyuetai/releases)** · **[下载最新版](https://github.com/KyleZheng8848/yinyuetai/releases/latest)** · [反馈问题](https://github.com/KyleZheng8848/yinyuetai/issues)
 
 [English](README.md) | **简体中文**
 
@@ -18,7 +18,7 @@
 
 [![浏览器演示剪辑：创作、生成、播放、曲库与关于页](assets/demo/preview.gif)](docs/MEDIA.md)
 
-**[界面截图与演示介绍](docs/MEDIA.md)** · [完整使用说明](docs/USAGE.zh-CN.md)
+**[观看演示（MP4）](https://github.com/KyleZheng8848/yinyuetai/releases/download/v1.15.11/yinyuetai-browser-walkthrough-1.15.11.mp4)** · **[界面截图与演示介绍](docs/MEDIA.md)** · [完整使用说明](docs/USAGE.zh-CN.md)
 
 预览来自 Computer Use 在空白隔离会话中的真实浏览器操作，为带双语字幕、无旁白的采样画面剪辑。音频由内置**程序化 Demo 合成器**产生，不是音乐模型的生成样例，也不会演唱界面中的歌词。当前不包含原生桌面窗口录像。
 
@@ -34,7 +34,12 @@
 
 ## 下载应用
 
-首个 macOS 版本正在通过 [GitHub Actions](https://github.com/KyleZheng8848/yinyuetai/actions)准备。请以 [Releases](https://github.com/KyleZheng8848/yinyuetai/releases) 中实际发布的版本为准，发布前可按下文从源码运行。Windows/Linux 有构建目标配置，尚无经过验证的公开安装包。
+[Releases](https://github.com/KyleZheng8848/yinyuetai/releases) · **[v1.15.11](https://github.com/KyleZheng8848/yinyuetai/releases/tag/v1.15.11)** · **[下载最新版](https://github.com/KyleZheng8848/yinyuetai/releases/latest)**
+
+- [Apple Silicon (M 系列) — DMG](https://github.com/KyleZheng8848/yinyuetai/releases/download/v1.15.11/Yinyuetai-Studio-1.15.11-mac-arm64.dmg)
+- [Intel — DMG](https://github.com/KyleZheng8848/yinyuetai/releases/download/v1.15.11/Yinyuetai-Studio-1.15.11-mac-x64.dmg)
+
+Release 同时提供 ZIP 和 `SHA256SUMS.txt`，双架构安装包已解包验收并匿名下载核对校验和。采用临时签名，未 Apple 公证；将应用拖入 Applications。首次打开如被拦截，核对来源后在系统「隐私与安全性」使用「仍要打开」。Windows/Linux 仅有构建目标配置，尚无经过验证的安装包。
 
 ## 不下载模型，先完成一次试听
 
@@ -81,4 +86,10 @@ npm run check:version
 
 应用源码采用 [MIT](LICENSE)，© 2026 SofunAI 工作室及音悦台贡献者。**lamejs / LAME 保留 LGPL-3.0**，完整许可与替换/重建说明见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。可选模型的代码、权重、API 与生成内容遵循各自条款，本仓库的 MIT 不对它们重新授权。
 
-[Codex](https://developers.openai.com/codex/) 协助完成开源整理、文档与验证；在此致谢工具，不虚构 GitHub 贡献者身份。贡献者可自行使用 Cursor 编辑器，未有实际使用证据时不声称 Cursor 参与署名。
+[Codex](https://developers.openai.com/codex/) 协助完成开源整理、文档与验证；在此致谢工具，不虚构 GitHub 贡献者身份。
+
+## 更多 SofunAI 开源作品
+
+- [Musepaper](https://github.com/KyleZheng8848/musepaper) — AI 壁纸与作品管理
+- [FreeAll](https://github.com/KyleZheng8848/freeall) — 本机 API 账号池与网关
+- [CPET](https://github.com/KyleZheng8848/cpet) — 编程 Agent 桌宠与工作台

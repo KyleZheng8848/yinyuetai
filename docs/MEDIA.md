@@ -18,4 +18,4 @@ Yinyuetai Studio 1.15.11. Captured from the actual browser UI in an isolated ses
 
 The walkthrough is a silent edited sequence of sampled real browser captures with bilingual captions. It covers offline composition, generation, playback, library and About. Cuts occur between sampled segments. It is not a continuous native desktop recording. The Demo does not sing the displayed lyrics and is not a music-model quality sample.
 
-MP4 download will be added to the first verified GitHub Release. / MP4 将随首个已验收的 GitHub Release 提供下载。
+[Watch / 下载 MP4](https://github.com/KyleZheng8848/yinyuetai/releases/download/v1.15.11/yinyuetai-browser-walkthrough-1.15.11.mp4)

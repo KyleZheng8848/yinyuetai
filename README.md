@@ -6,7 +6,7 @@
 
 **Published and maintained by [SofunAI Studio](assets/brand/README.md).**
 
-**[GitHub](https://github.com/KyleZheng8848/yinyuetai)** · **[Releases](https://github.com/KyleZheng8848/yinyuetai/releases)** · [Report a bug](https://github.com/KyleZheng8848/yinyuetai/issues)
+**[GitHub](https://github.com/KyleZheng8848/yinyuetai)** · **[Releases](https://github.com/KyleZheng8848/yinyuetai/releases)** · **[Download latest](https://github.com/KyleZheng8848/yinyuetai/releases/latest)** · [Report a bug](https://github.com/KyleZheng8848/yinyuetai/issues)
 
 **English** | [简体中文](README.zh-CN.md)
 
@@ -18,7 +18,7 @@
 
 [![Edited browser walkthrough: composition, generation, playback, library and About](assets/demo/preview.gif)](docs/MEDIA.md)
 
-**[Screenshots and walkthrough](docs/MEDIA.md)** · [Chinese usage guide](docs/USAGE.zh-CN.md)
+**[Watch the walkthrough (MP4)](https://github.com/KyleZheng8848/yinyuetai/releases/download/v1.15.11/yinyuetai-browser-walkthrough-1.15.11.mp4)** · **[Screenshots and walkthrough](docs/MEDIA.md)** · [Chinese usage guide](docs/USAGE.zh-CN.md)
 
 The preview shows real browser UI operated with Computer Use in an empty, isolated session. It is an edited sequence of sampled screen captures, silent, with bilingual captions. The audio is from the built-in **procedural Demo synthesizer**, not a trained music model or a sung version of the displayed lyrics. Native desktop recording is not included.
 
@@ -34,7 +34,12 @@ The app UI is currently primarily **Simplified Chinese**. Both README languages 
 
 ## Downloads
 
-The first macOS release is being prepared in [GitHub Actions](https://github.com/KyleZheng8848/yinyuetai/actions). Until a verified release is listed in [Releases](https://github.com/KyleZheng8848/yinyuetai/releases), use the source instructions below. Windows/Linux build targets exist, but no verified binary release is provided for those platforms.
+[Releases](https://github.com/KyleZheng8848/yinyuetai/releases) · **[v1.15.11](https://github.com/KyleZheng8848/yinyuetai/releases/tag/v1.15.11)** · **[Download latest](https://github.com/KyleZheng8848/yinyuetai/releases/latest)**
+
+- [Apple Silicon (M 系列) — DMG](https://github.com/KyleZheng8848/yinyuetai/releases/download/v1.15.11/Yinyuetai-Studio-1.15.11-mac-arm64.dmg)
+- [Intel — DMG](https://github.com/KyleZheng8848/yinyuetai/releases/download/v1.15.11/Yinyuetai-Studio-1.15.11-mac-x64.dmg)
+
+ZIP alternatives and `SHA256SUMS.txt` are on the release page. Both architectures were unpacked and verified, then anonymously downloaded for checksum validation. Apps use ad hoc signatures and are not Apple-notarized. Drag the app to Applications; after checking the source, use Privacy & Security → Open Anyway if the first launch is blocked. Windows/Linux targets are configured but have no verified binary release.
 
 ## First result, without a model
 
@@ -81,4 +86,10 @@ For packaging and dual-architecture checks, see [RELEASING.md](docs/RELEASING.md
 
 Application code is [MIT](LICENSE), © 2026 SofunAI Studio and Yinyuetai contributors. **lamejs / LAME remains LGPL-3.0**; full license texts and replacement/rebuild guidance are in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). Optional model code, weights, APIs and generated content retain their respective terms; this repository's MIT license does not relicense them.
 
-[Codex](https://developers.openai.com/codex/) assisted with open-source preparation, documentation and verification. AI tools are acknowledged here rather than added as fictional GitHub contributors. Cursor can be used as a contributor's editor; no Cursor authorship is claimed without evidence of its use.
+[Codex](https://developers.openai.com/codex/) assisted with open-source preparation, documentation and verification. AI tools are acknowledged here rather than added as fictional GitHub contributors.
+
+## More from SofunAI Studio
+
+- [Musepaper](https://github.com/KyleZheng8848/musepaper) — AI wallpapers
+- [FreeAll](https://github.com/KyleZheng8848/freeall) — Local API gateway
+- [CPET](https://github.com/KyleZheng8848/cpet) — Coding-agent desktop companion
