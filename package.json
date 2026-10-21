@@ -50,7 +50,9 @@
       "!assets/screenshots/**",
       "!outputs/**",
       "!.runtime/**",
-      "!.env*"
+      "!.env*",
+      "!assets/demo/**",
+      "!**/node_modules/lamejs/testdata/**"
     ],
     "mac": {
       "category": "public.app-category.music",

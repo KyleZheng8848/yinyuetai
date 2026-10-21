@@ -34,7 +34,8 @@ if (pkg.version !== process.argv[2] || !JSON.stringify(pkg).includes(process.arg
 for (const required of ['/LICENSE', '/THIRD_PARTY_NOTICES.md', '/licenses/LGPL-3.0.txt', '/licenses/GPL-3.0.txt', '/node_modules/lamejs/lame.min.js', '/node_modules/lamejs/src/js/index.js', '/assets/brand/sofunai-logo-dark.svg']) {
   if (!files.includes(required)) throw new Error('Missing distribution file: ' + required);
 }
-if (files.some(p => /(^|\/)(outputs|\.runtime|__pycache__)(\/|$)|\.(?:safetensors|ckpt|wav|mp3|pyc)$/i.test(p))) throw new Error('Runtime/model/audio data in package');
+const runtimeFiles = files.filter(p => /(^|\/)(outputs|\.runtime|__pycache__)(\/|$)|\.(?:safetensors|ckpt|wav|mp3|pyc)$/i.test(p));
+if (runtimeFiles.length) throw new Error('Runtime/model/audio data in package: ' + runtimeFiles.join(', '));
 let studio = false, source = false;
 for (const f of files.filter(p => /\.(js|cjs|html)$/.test(p) && !p.startsWith('/node_modules/'))) {
   const text = a.extractFile(archive, f.slice(1)).toString();
